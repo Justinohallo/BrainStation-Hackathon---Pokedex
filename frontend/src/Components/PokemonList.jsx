@@ -1,20 +1,28 @@
 import React, { Component } from "react";
-import { Route, Link } from "react-router-dom";
-import PokemonDetails from './PokemonDetails'
+import { Route } from "react-router-dom";
+import PokemonDetails from "./PokemonDetails";
+
+// https://pokeapi.co/api/v2/pokemon/1/
 
 class PokemonList extends Component {
-    render() {
-      
+  render() {
+    let listJsx = this.props.pokemonList.map((pokemon, i) => {
+      let id = pokemon.url.substr(34);
+      let cutId = id.substr(0, id.length - 1);
       return (
-        <div className='black-text'>
-          <Link to='/pokemondetails'>
-          <img src='/img/1.png' alt='test'/>
-          </Link>
-          <Route path='/:pokeid'render={() => <PokemonDetails />}/>
+        <div>
+          <img src={`/img/${cutId}.png`} alt="pokemon" />
+          <p> {pokemon.name} </p>
         </div>
       );
-    }
+    });
+    return (
+      <div className="black-text">
+        {listJsx}
+        <Route path="/:pokeid" render={() => <PokemonDetails />} />
+      </div>
+    );
   }
-  
-  export default PokemonList;
-  
+}
+
+export default PokemonList;
