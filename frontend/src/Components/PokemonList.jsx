@@ -5,19 +5,12 @@ import PokemonDetails from "./PokemonDetails";
 // https://pokeapi.co/api/v2/pokemon/1/
 
 class PokemonList extends Component {
-
-
   render() {
     let listJsx = this.props.pokemonList.map((pokemon, i) => {
       let id = pokemon.url.substr(34);
       let cutId = id.substr(0, id.length - 1);
       return (
-        <div>
-         <Link to={`/${cutId}`} onClick={()=> { this.props.sendId(cutId)}}>
-          <img src={`/img/${cutId}.png`} alt="pokemon" />
-          <p> {pokemon.name} </p>
-          </Link>
-        </div>
+        <Pokemon key={i} pokemon={pokemon} cutId={cutId} addPokemon={this.props.addPokemon} sendId={this.props.sendId}/>
       );
     });
     return (
@@ -26,6 +19,26 @@ class PokemonList extends Component {
         <Route path="/:pokeid" render={() => <PokemonDetails />} />
       </div>
     );
+  }
+}
+
+class Pokemon extends Component {
+  handleClick = () => {
+    this.props.addPokemon(
+      this.props.pokemon.name
+    )
+  }
+
+  render() {
+    return (
+      <div>
+        <Link to={`/${this.props.cutId}`} onClick={() => { this.props.sendId(this.props.cutId) }}>
+          <img src={`/img/${this.props.cutId}.png`} alt="pokemon" />
+          <p> {this.props.pokemon.name} </p>
+        </Link>
+        <button onClick={this.handleClick}>Caught!</button>
+      </div>
+    )
   }
 }
 
