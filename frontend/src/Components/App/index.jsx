@@ -9,7 +9,6 @@ class App extends Component {
     super(props);
     this.state = {
       pokemonIndex: 0,
-      pokemon: ''
     };
   }
 
@@ -17,23 +16,8 @@ class App extends Component {
     this.setState({ pokemonIndex: cutId });
   };
 
-  searchPokemon = (e, pokemon) => { 
-    if(!pokemon) {
-      alert('What do you want to catch?')
-      return
-    } this.setState({pokemon:pokemon})
-    let searchId = this.props.pokemonList.map(pokemonProps => {
-      if (pokemon === pokemonProps.name) {
-        let index = pokemonProps.url.substr(34);
-        let searchIndex = index.substr(0, index.length - 1);
-        this.setState({pokemonIndex:searchIndex})
-        console.log(this.state.pokemonIndex)
-      }
-    })
-    
-  }
-
   render() {
+
     return (
       <div className="containter center">
         <nav className="black-text white">
@@ -42,20 +26,6 @@ class App extends Component {
               <Link className="black-text" to="/">
                 POKEMON
               </Link>
-              <div className="container center">
-                <form id="name-form" className="col s12">
-                  <div className="input-field col s6">
-                    <input ref="name" type="text" />
-                    <label htmlFor="POKEMON">POKEMON</label>
-                  </div>
-                </form>
-                <Link to={`/${this.state.pokemonIndex}`}
-                  className="btn waves-effect waves-light teal accent-2 btn"
-                  onClick={e=>{ this.searchPokemon(e, this.refs.name.value)}}
-                >
-                  CATCH 'EM
-                </Link>
-              </div>
               <Switch>
                 <Route
                   exact
@@ -86,3 +56,13 @@ class App extends Component {
 }
 
 export default App;
+
+// let searchId = this.props.pokemonList.map(pokemonProps => {
+// if (pokemon === pokemonProps.name) {
+//   let index = pokemonProps.url.substr(34);
+//   let searchIndex = index.substr(0, index.length - 1);
+//   this.setState({pokemonIndex:searchIndex}) }
+                  {/* {filteredPokemon.map(pokemon => {
+                    console.log()
+                    return <PokemonDetails pokemon={pokemon}/>
+                  })} */}
