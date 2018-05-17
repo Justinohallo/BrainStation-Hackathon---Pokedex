@@ -47,6 +47,7 @@ class App extends Component {
   }
 
   render() {
+
     return (
       <div className="containter center">
         <CaughtPokemon caughtPokemon={this.state.caughtPokemon} />
@@ -56,20 +57,6 @@ class App extends Component {
               <Link className="black-text" to="/">
                 POKEMON
               </Link>
-              <div className="container center">
-                <form id="name-form" className="col s12">
-                  <div className="input-field col s6">
-                    <input ref="name" type="text" />
-                    <label htmlFor="POKEMON">POKEMON</label>
-                  </div>
-                </form>
-                <Link to={`/${this.state.pokemonIndex}`}
-                  className="btn waves-effect waves-light teal accent-2 btn"
-                  onClick={e => { this.searchPokemon(e, this.refs.name.value) }}
-                >
-                  CATCH 'EM
-                </Link>
-              </div>
               <Switch>
                 <Route
                   exact
@@ -102,3 +89,13 @@ class App extends Component {
 }
 
 export default App;
+
+// let searchId = this.props.pokemonList.map(pokemonProps => {
+// if (pokemon === pokemonProps.name) {
+//   let index = pokemonProps.url.substr(34);
+//   let searchIndex = index.substr(0, index.length - 1);
+//   this.setState({pokemonIndex:searchIndex}) }
+{/* {filteredPokemon.map(pokemon => {
+                    console.log()
+                    return <PokemonDetails pokemon={pokemon}/>
+                  })} */}
