@@ -4,10 +4,11 @@ import React, { Component } from "react";
 
 class PokemonDetails extends Component {
     render() {
-
+let id = this.props.id -1
       return (
         <div className='black-text'> 
-        <p>this is the individual pokemon details</p>
+        <p>{this.props.pokemonList[id].name}</p>
+        <img src={`/img/${[this.props.id]}.png`} alt='pokemon'/>
         </div>
       );
     }
