@@ -1,6 +1,4 @@
 import React, { Component } from "react";
-// import { Route, Link } from "react-router-dom";
-// import PokemonList from './PokemonList'
 
 class PokemonDetails extends Component {
   render() {
@@ -13,7 +11,7 @@ class PokemonDetails extends Component {
           {this.props.pokemonList[id].name.toUpperCase()}
         </p>
         <div className="col m4">
-          <i
+          <i id='arrowIcon' 
             onClick={() => {this.props.previousPokemon(this.props.id);}}
             className="large material-icons"
           >
@@ -28,7 +26,7 @@ class PokemonDetails extends Component {
           />
         </div>
         <div className="col m4">
-          <i
+          <i  id='arrowIcon' 
             onClick={() => {this.props.nextPokemon(this.props.id);}}
             className="large material-icons"
           >
