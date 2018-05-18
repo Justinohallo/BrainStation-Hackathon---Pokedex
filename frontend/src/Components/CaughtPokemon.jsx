@@ -6,16 +6,19 @@ class CaughtPokemon extends Component {
   render() {
     let caughtPokemonJSX = this.props.caughtPokemon.map(pokemon => {
       return (
+
         <div className='col s1'>
-          <p>{pokemon.name}</p>
+          <p>{pokemon.name.toUpperCase()}</p>
         </div>
       );
     });
 
     return (
-      <div className='row'>
-        <h3>Your PokeBall</h3>
+      <div>
+        <img id='catchPhrase' src='/img/catch.png' alt='catch'/>
+        <div className='row'>
         {caughtPokemonJSX}
+        </div>
       </div>
     );
   }
