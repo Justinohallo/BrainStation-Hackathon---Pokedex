@@ -68,8 +68,8 @@ class PokemonList extends Component {
 class Pokemon extends Component {
   handleClick = () => {
     const { addPokemon, pokemon } = this.props
-    addPokemon(pokemon.name);
-    this.songPlayer.play();
+    addPokemon(pokemon.url)
+    this.songPlayer.play()
   };
 
   render() {
