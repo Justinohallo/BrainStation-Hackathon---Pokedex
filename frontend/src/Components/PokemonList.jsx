@@ -56,7 +56,6 @@ class PokemonList extends Component {
           </div>
         </form>
         <div className="row">{listJSX}</div>
-        <Route path="/:pokeid" render={() => <PokemonDetails />} />
       </div>
     );
   }

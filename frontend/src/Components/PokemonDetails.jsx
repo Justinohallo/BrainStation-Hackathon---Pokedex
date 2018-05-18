@@ -1,14 +1,22 @@
 import React, { Component } from "react";
 
 class PokemonDetails extends Component {
+  componentDidMount(){
+    const {match} = this.props
+ }
   render() {
+   
+    
     let id = this.props.id - 1;
-
+    let pokemonList = this.props.pokemonList
+    let pokemonName = this.props.match.params.pokeid
+    console.log(id)
+    console.log(this.props.pokemonList)
     return (
       <div className="black-text row">
         {this.props.id}
         <p className="pokeName">
-          {this.props.pokemonList[id].name.toUpperCase()}
+          {pokemonList[pokemonName].name.toUpperCase()}
         </p>
         <div className="col m4">
           <i id='arrowIcon' 
