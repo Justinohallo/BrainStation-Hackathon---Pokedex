@@ -78,7 +78,6 @@ class Pokemon extends Component {
       <div className="col m3">
         <div className="card">
           <div className="card-image">
-            <img className="responsive-img" src={`/img/${cutId}.png`} alt="pokemon" />
             <div className="card-content center-align">
               <Link
                 className="black-text"
@@ -87,6 +86,7 @@ class Pokemon extends Component {
                   sendId(cutId);
                 }}
               >
+                <img className="responsive-img" src={`/img/${cutId}.png`} alt="pokemon" />
                 <p className='pokeName'> {pokemon.name.toUpperCase()} </p>
               </Link>
               <img

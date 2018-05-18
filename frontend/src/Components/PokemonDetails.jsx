@@ -17,7 +17,7 @@ class PokemonDetails extends Component {
   }
 
   componentDidMount() {
-    axios.get("http://localhost:5050/pokeData").then(response => {
+    axios.get("http://localhost:8080/pokeData").then(response => {
       this.setState({
         pokeData: response.data
       })
