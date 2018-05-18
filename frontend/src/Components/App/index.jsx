@@ -19,7 +19,6 @@ class App extends Component {
   componentDidMount() {
     axios.get('http://localhost:8080/')
       .then((response) => {
-        console.log(response.data.pokemonList)
         this.setState({
           pokemonList: response.data.pokemonList,
           caughtPokemon: response.data.caughtPokemon

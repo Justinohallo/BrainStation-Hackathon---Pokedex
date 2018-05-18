@@ -4,7 +4,6 @@ const app = express()
 const port = process.argv[2] || 8080
 const bodyParser = require('body-parser')
 
-// let pokemonList = []
 let caughtPokemon = []
 
 // middleware
@@ -28,7 +27,6 @@ app.get('/', (req, res) => {
     }
   }))
 })
-
 
 app.post('/', (req, res) => {
   caughtPokemon = req.body.caughtPokemon
