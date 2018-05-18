@@ -1,74 +1,86 @@
 import React, { Component } from "react";
-import axios from 'axios'
+import axios from "axios";
 // import { Route, Link } from "react-router-dom";
 // import PokemonList from './PokemonList'
 
 class PokemonDetails extends Component {
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
       pokeData: []
-    }
-    console.log(this.state.pokeData)
+    };
+    console.log(this.state.pokeData);
   }
 
   componentDidMount() {
-    axios.get('http://localhost:8080/pokeData')
-    .then((response) => {
+    axios.get("http://localhost:5050/pokeData").then(response => {
       this.setState({
         pokeData: response.data
-      })
-    })
+      });
+    });
   }
 
   render() {
-    const { 
-      pokemonList, 
-      previousPokemon, 
-      nextPokemon 
-    } = this.props
+    const { pokemonList, previousPokemon, nextPokemon } = this.props;
 
-    const { pokeData } = this.state
+    const { pokeData } = this.state;
 
     let id = this.props.id - 1;
 
-    if(pokeData.length < 1){
-      return (
-        <p> Loading... </p>
-      )
+    if (pokeData.length < 1) {
+      return <img id="ball" src="/img/ball.gif" alt="loading" />;
     }
-    
+
     return (
       <div className="black-text row">
-        {this.props.id}
-        <p className='pokeName'>{pokemonList[id].name.toUpperCase()}</p>
-        <div className='col m4'>
-          <i id='arrowIcon'
+        <div className="col m4">
+          <i
+            id="arrowIcon"
             onClick={() => {
               previousPokemon(this.props.id);
             }}
-            className="material-icons"
+            className="large material-icons"
           >
             chevron_left
-        </i>
+          </i>
         </div>
-        <div className='col m4'>
-          <img id='detailPokemon' src={`/img/${[this.props.id]}.png`} alt="pokemon" />
-          <p>{pokeData[id].description}</p>
-          <p>{pokeData[id].type[0]}</p>
-          <p>{pokeData[id].height}</p>
-          <p>{pokeData[id].weight}</p>
+        <div className="col m4">
+          <div className="card">
+            <img
+              id="detailPokemon"
+              src={`/img/${[this.props.id]}.png`}
+              alt="pokemon"
+            />
+            <span id="pokeCardName" className="card-title pokeName">
+              {pokemonList[id].name.toUpperCase()}
+            </span>
+            <div className="card-content">
+            <div className="row">
+            <div className="col s4">
+              <p>{pokeData[id].height}</p>
+              </div>
+              <div className="col s4">
+              <p>{pokeData[id].type[0].toUpperCase()}</p>
+              </div>
+              <div className="col s4">
+              <p>{pokeData[id].weight}</p>
+              </div>
+              </div>
+              <p>{pokeData[id].description}</p>
+            </div>
+          </div>
         </div>
-        <div className='col m4'>
-          <i id='arrowIcon'
+        <div className="col m4">
+          <i
+            id="arrowIcon"
             onClick={() => {
               nextPokemon(this.props.id);
             }}
-            className="material-icons"
+            className="large material-icons"
           >
             chevron_right
-        </i>
+          </i>
         </div>
       </div>
     );
