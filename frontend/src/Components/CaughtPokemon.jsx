@@ -3,23 +3,19 @@ import React, { Component } from "react";
 // import PokemonList from './PokemonList'
 
 class CaughtPokemon extends Component {
-
   render() {
     let caughtPokemonJSX = this.props.caughtPokemon.map(pokemon => {
       return (
-        <div className="col s6 m2">
-          <p id='caughtPokemon'>{pokemon.name.toUpperCase()}</p>
+        <div className="col s6 m2 collapsible-body">
+          <span id="caughtPokemon">{pokemon.name.toUpperCase()}</span>
         </div>
       );
     });
-         
 
     return (
-      <div >
+      <div>
         <img id="catchPhrase" src="/img/catch.png" alt="catch" />
-        <div className="row">
-        <span>{caughtPokemonJSX}</span>
-          </div>
+        <div className="row">{caughtPokemonJSX}</div>
       </div>
     );
   }
