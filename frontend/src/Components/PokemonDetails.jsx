@@ -12,7 +12,6 @@ class PokemonDetails extends Component {
     this.state = {
       pokeData: []
     };
-    console.log(this.state.pokeData);
   }
 
   componentWillMount() {
@@ -35,7 +34,8 @@ class PokemonDetails extends Component {
       pokemonList,
       previousPokemon,
       nextPokemon,
-      match
+      match,
+      addPokemon
     } = this.props
 
     const { pokeData } = this.state;
@@ -47,10 +47,6 @@ class PokemonDetails extends Component {
     if (pokeData.length < 1) {
       return <img id="ball" src="/img/ball.gif" alt="loading" />;
     }
-
-    // if (pokeData[id].type[0] === fire ) {
-    //   return <img
-    // }
 
     return (
       <div className="black-text row">
@@ -81,6 +77,21 @@ class PokemonDetails extends Component {
               </span>
             </div>
             <div className="card-content">
+              {/* <div className="row">
+                <img
+                  className="waves-effect waves-light white pokeballImg"
+                  onClick={() => {
+                    addPokemon(pokemon.url);
+                    this.songPlayer.play();
+                  };}
+                  id="pokeball"
+                  src="/img/pokeball.png"
+                  alt="pokeball"
+                />
+                <audio ref={element => (this.songPlayer = element)}>
+                  <source src="/audio/pokeball.mp3" type="audio/mpeg" />
+                </audio>
+              </div> */}
               <div className="row">
                 <div className="col s4">
                   <p>{pokeData[id].height}</p>
@@ -114,10 +125,3 @@ class PokemonDetails extends Component {
 }
 
 export default PokemonDetails;
-
-//There is an issue when we refresh the page. The props is no longer being passed into this function.
-//When we reset the page, the state changes and returns back to 0.
-// We are then reducing the id by 1, which results in a props of 0 and a local id of -1.
-// When we refresh the page, we are losing the state of the pokemon, which is the index.
-// The index starts at 1 and when we refresh the page, we have id at 0-1 which is 0.
-// Need a function
