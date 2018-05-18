@@ -78,6 +78,12 @@ class App extends Component {
     })
   }
 
+  urlUpdateState = (id) =>{
+    this.setState({
+      pokemonIndex: id
+    })
+  }
+
   render() {
     const { pokemonList, caughtPokemon } = this.state
     if(pokemonList.length < 1){
@@ -107,16 +113,18 @@ class App extends Component {
                 )}
               />
               <Route
-                path="/:pokeid"
-                render={props => (
+                path="/:pokeid" 
+                render={(props) => 
                   <PokemonDetails
+                  {...props}
                     pokemonList={pokemonList}
                     id={this.state.pokemonIndex}
                     addPokemon={this.addPokemon}
                     nextPokemon={this.nextPokemon}
                     previousPokemon={this.previousPokemon}
+                    urlUpdateState={this.urlUpdateState}
                   />
-                )}
+                }
               />
             </Switch>
           </ul>

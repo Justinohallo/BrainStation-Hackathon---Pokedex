@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import axios from 'axios'
+import { Route, Link } from "react-router-dom";
+
 // import { Route, Link } from "react-router-dom";
 // import PokemonList from './PokemonList'
 
@@ -13,12 +15,19 @@ class PokemonDetails extends Component {
     console.log(this.state.pokeData)
   }
 
+  componentWillMount(){
+    let urlUpdateState = this.props.urlUpdateState
+    urlUpdateState(this.props.match.params.pokeid)
+  }
+
   componentDidMount() {
     axios.get('http://localhost:8080/pokeData')
     .then((response) => {
       this.setState({
         pokeData: response.data
       })
+      const {match} = this.props
+      // might be in the wrong spot
     })
   }
 
@@ -26,12 +35,15 @@ class PokemonDetails extends Component {
     const { 
       pokemonList, 
       previousPokemon, 
-      nextPokemon 
+      nextPokemon,
+      match
     } = this.props
 
     const { pokeData } = this.state
 
     let id = this.props.id - 1;
+    let pokemonGroup = this.props.pokemonList
+    let pokemonName = this.props.match.params.pokeid
 
     if(pokeData.length < 1){
       return (
@@ -44,14 +56,16 @@ class PokemonDetails extends Component {
         {this.props.id}
         <p className='pokeName'>{pokemonList[id].name.toUpperCase()}</p>
         <div className='col m4'>
+        <Link to={`${[this.props.id]}`}>
           <i id='arrowIcon'
             onClick={() => {
               previousPokemon(this.props.id);
             }}
             className="material-icons"
           >
+        
             chevron_left
-        </i>
+        </i> </Link>
         </div>
         <div className='col m4'>
           <img id='detailPokemon' src={`/img/${[this.props.id]}.png`} alt="pokemon" />
@@ -61,6 +75,7 @@ class PokemonDetails extends Component {
           <p>{pokeData[id].weight}</p>
         </div>
         <div className='col m4'>
+        <Link to={`${[this.props.id]}`}>
           <i id='arrowIcon'
             onClick={() => {
               nextPokemon(this.props.id);
@@ -69,6 +84,7 @@ class PokemonDetails extends Component {
           >
             chevron_right
         </i>
+        </Link>
         </div>
       </div>
     );
