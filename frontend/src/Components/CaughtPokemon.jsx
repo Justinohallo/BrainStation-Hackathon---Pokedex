@@ -4,9 +4,11 @@ import React, { Component } from "react";
 
 class CaughtPokemon extends Component {
   render() {
-    let caughtPokemonJSX = this.props.caughtPokemon.map(pokemon => {
+    const { caughtPokemon } = this.props
+
+    let caughtPokemonJSX = caughtPokemon.map((pokemon, i) => {
       return (
-        <div className="col s6 m2">
+        <div key={i} className="col s6 m2">
           <p id='caughtPokemon'>{pokemon.name.toUpperCase()}</p>
         </div>
       );

@@ -21,19 +21,19 @@ app.use((req, res, next) => {
 // endpoints
 app.get('/', (req, res) => {
   request("https://pokeapi.co/api/v2/pokemon/?limit=151", ((error, response, body) => {
-    if (!error && response.statusCode == 200) {
-      let apiData = JSON.parse(body)
-      let pokemonList = apiData.results
-      res.send({ pokemonList, caughtPokemon })
-    }
+    let apiData = JSON.parse(body)
+    let pokemonList = apiData.results
+    res.send({ pokemonList, caughtPokemon })
   }))
 })
 
 app.post('/', (req, res) => {
   caughtPokemon = req.body.caughtPokemon
-
   res.json({ success: true })
 })
+
+console.log(caughtPokemon)
+
 
 app.get('/pokeData', (req, res) => {
   oakdexPokedex.allPokemon({ dex: 'kanto' }, ((pokemon) => {

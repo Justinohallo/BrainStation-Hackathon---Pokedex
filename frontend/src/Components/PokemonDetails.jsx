@@ -1,15 +1,34 @@
 import React, { Component } from "react";
+import axios from 'axios'
 // import { Route, Link } from "react-router-dom";
 // import PokemonList from './PokemonList'
 
 class PokemonDetails extends Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      pokeData: []
+    }
+  }
+
+  componentDidMount() {
+    axios.get('http://localhost:8080/pokeData')
+    .then((response) => {
+      this.setState({
+        pokeData: response.data
+      })
+    })
+  }
+
   render() {
     const { 
-      pokeData, 
       pokemonList, 
       previousPokemon, 
       nextPokemon 
     } = this.props
+
+    const { pokeData } = this.state
 
     let id = this.props.id - 1;
     

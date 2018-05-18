@@ -12,8 +12,7 @@ class App extends Component {
     this.state = {
       pokemonList: [],
       pokemonIndex: 0,
-      caughtPokemon: [],
-      pokeData: []
+      caughtPokemon: []
     }
   }
 
@@ -23,12 +22,6 @@ class App extends Component {
         this.setState({
           pokemonList: response.data.pokemonList,
           caughtPokemon: response.data.caughtPokemon
-        })
-      })
-    axios.get('http://localhost:8080/pokeData')
-      .then((response) => {
-        this.setState({
-          pokeData: response.data
         })
       })
   }
@@ -86,7 +79,7 @@ class App extends Component {
   }
 
   render() {
-    const { pokemonList, caughtPokemon, pokeData } = this.state
+    const { pokemonList, caughtPokemon } = this.state
 
     return (
       <div className="center">
@@ -117,7 +110,6 @@ class App extends Component {
                     addPokemon={this.addPokemon}
                     nextPokemon={this.nextPokemon}
                     previousPokemon={this.previousPokemon}
-                    pokeData={pokeData}
                   />
                 )}
               />
