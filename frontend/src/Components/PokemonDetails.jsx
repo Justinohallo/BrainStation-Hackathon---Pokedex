@@ -14,7 +14,7 @@ class PokemonDetails extends Component {
   }
 
   componentDidMount() {
-    axios.get("http://localhost:5050/pokeData").then(response => {
+    axios.get("http://localhost:8080/pokeData").then(response => {
       this.setState({
         pokeData: response.data
       });
@@ -47,25 +47,29 @@ class PokemonDetails extends Component {
         </div>
         <div className="col m4">
           <div className="card">
-            <img
-              id="detailPokemon"
-              src={`/img/${[this.props.id]}.png`}
-              alt="pokemon"
-            />
-            <span id="pokeCardName" className="card-title pokeName">
-              {pokemonList[id].name.toUpperCase()}
-            </span>
-            <div className="card-content">
             <div className="row">
-            <div className="col s4">
-              <p>{pokeData[id].height}</p>
-              </div>
-              <div className="col s4">
-              <p>{pokeData[id].type[0].toUpperCase()}</p>
-              </div>
-              <div className="col s4">
-              <p>{pokeData[id].weight}</p>
-              </div>
+              <img
+                id="detailPokemon"
+                src={`/img/${[this.props.id]}.png`}
+                alt="pokemon"
+              />
+            </div>
+            <div className="row">
+              <span id="pokeCardName" className="card-title pokeName">
+                {pokemonList[id].name.toUpperCase()}
+              </span>
+            </div>
+            <div className="card-content">
+              <div className="row">
+                <div className="col s4">
+                  <p>{pokeData[id].height}</p>
+                </div>
+                <div className="col s4">
+                  <p>{pokeData[id].type[0].toUpperCase()}</p>
+                </div>
+                <div className="col s4">
+                  <p>{pokeData[id].weight}</p>
+                </div>
               </div>
               <p>{pokeData[id].description}</p>
             </div>

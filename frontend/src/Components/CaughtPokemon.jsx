@@ -40,7 +40,8 @@ class CaughtPokemon extends Component {
     return (
       <div>
         <img id="catchPhrase" src="/img/catch.png" alt="catch" />
-        <button className="accordion">My Pokemon</button>
+        <button className="accordion">
+        </button>
         <div className="panel">
           <div className="row">{caughtPokemonJSX}</div>
         </div>

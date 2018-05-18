@@ -17,7 +17,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    axios.get('http://localhost:5050/')
+    axios.get('http://localhost:8080/')
       .then((response) => {
         this.setState({
           pokemonList: response.data.pokemonList,
@@ -28,7 +28,7 @@ class App extends Component {
 
   componentDidUpdate() {
     const { caughtPokemon } = this.state
-    axios.post('http://localhost:5050/', { caughtPokemon })
+    axios.post('http://localhost:8080/', { caughtPokemon })
       .then((response) => {
         console.log(response)
       }).catch((error) => {
