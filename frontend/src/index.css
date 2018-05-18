@@ -45,6 +45,29 @@ body {
   cursor: pointer;
 }
 
+#arrowIcon {
+  margin-top: 30%;
+}
+
+#loading {
+  width: 100%;
+  height: 60%;
+}
+
+#ball {
+  align-self: center;
+  width: 50%;
+  height: 40%;
+}
+
+#typeIcon {
+  width: 30%;
+}
+
+#pokeCardName {
+  text-align: center;
+}
+
 .pokeballImg {
   display:block;
   margin-left: auto;

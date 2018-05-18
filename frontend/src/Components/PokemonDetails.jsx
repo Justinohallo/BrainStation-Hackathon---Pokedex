@@ -39,18 +39,20 @@ class PokemonDetails extends Component {
     } = this.props
 
     const { pokeData } = this.state;
-
     let id = this.props.id - 1;
     let pokemonGroup = this.props.pokemonList
     let pokemonName = this.props.match.params.pokeid
+    
+    let icons = pokeData.map((data, i) => {
+      const index = this.props.id -1
+      if (i === index)
+      return <img id='typeIcon' src={`/img/${data.type[0]}.png`} alt='type' />
+    })
 
     if (pokeData.length < 1) {
       return <img id="ball" src="/img/ball.gif" alt="loading" />;
-    }
+    } 
 
-    // if (pokeData[id].type[0] === fire ) {
-    //   return <img
-    // }
 
     return (
       <div className="black-text row">
@@ -84,7 +86,8 @@ class PokemonDetails extends Component {
                   <p>{pokeData[id].height}</p>
                 </div>
                 <div className="col s4">
-                  <p>{pokeData[id].type[0].toUpperCase()}</p>
+                  <p>{icons}</p>
+                
                 </div>
                 <div className="col s4">
                   <p>{pokeData[id].weight}</p>
