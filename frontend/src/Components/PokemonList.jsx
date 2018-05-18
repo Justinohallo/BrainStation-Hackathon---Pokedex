@@ -72,7 +72,7 @@ class Pokemon extends Component {
   render() {
     return (
             <div className="col m3">
-              <div id='pokeCard' className="card">
+              <div className="card">
                 <div className="card-image">
                   <img src={`/img/${this.props.cutId}.png`} alt="pokemon" />
                   {/* <span className="card-title">Card Title</span> */}
@@ -91,7 +91,7 @@ class Pokemon extends Component {
                         this.props.sendId(this.props.cutId);
                       }}
                     >
-                      <p> {this.props.pokemon.name} </p>
+                      <p className='pokeName'> {this.props.pokemon.name.toUpperCase()} </p>
                     </Link>
                   </div>
                 </div>

@@ -88,14 +88,13 @@ class App extends Component {
     const { pokemonList, caughtPokemon } = this.state
 
     return (
-      <div className="containter center">
-        <CaughtPokemon caughtPokemon={caughtPokemon} />
-        <nav className="black-text white">
+      <div className="center">
           <div>
             <ul id="nav-mobile">
-              <Link className="black-text" to="/">
-                POKEMON
+              <Link id='homeLink' className="black-text" to="/">
+                PoKéMoN
               </Link>
+              <CaughtPokemon caughtPokemon={caughtPokemon} />
               <Switch>
                 <Route
                   exact
@@ -123,7 +122,6 @@ class App extends Component {
               </Switch>
             </ul>
           </div>
-        </nav>
       </div>
     );
   }
