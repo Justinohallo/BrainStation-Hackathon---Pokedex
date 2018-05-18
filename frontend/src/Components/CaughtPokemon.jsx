@@ -3,7 +3,6 @@ import React, { Component } from "react";
 // import PokemonList from './PokemonList'
 
 class CaughtPokemon extends Component {
-
   render() {
     const { caughtPokemon } = this.props
 
@@ -14,14 +13,11 @@ class CaughtPokemon extends Component {
         </div>
       );
     });
-         
 
     return (
-      <div >
+      <div>
         <img id="catchPhrase" src="/img/catch.png" alt="catch" />
-        <div className="row">
-        <span>{caughtPokemonJSX}</span>
-          </div>
+        <div className="row">{caughtPokemonJSX}</div>
       </div>
     );
   }
