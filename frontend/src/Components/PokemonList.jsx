@@ -13,9 +13,8 @@ class PokemonList extends Component {
     super(props);
     this.state = { 
       pokemonSearch: "" 
-    }
+    };
     this.searchHandler=this.searchHandler.bind(this)
-    
   }
 
   searchHandler = (event) => {
