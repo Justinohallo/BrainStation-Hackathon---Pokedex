@@ -4,7 +4,7 @@ const app = express()
 const port = process.argv[2] || 8080
 const bodyParser = require('body-parser')
 
-let pokemonList = []
+// let pokemonList = []
 let caughtPokemon = []
 
 // middleware
@@ -20,12 +20,15 @@ app.use((req, res, next) => {
 
 // endpoints
 app.get('/', (req, res) => {
-  request("https://pokeapi.co/api/v2/pokemon/?limit=151", ((error, res, body) => {
-  let apiData = JSON.parse(body)
-  pokemonList.push(apiData.results)
-}))
-  res.send({ pokemonList, caughtPokemon } )
+  request("https://pokeapi.co/api/v2/pokemon/?limit=151", ((error, response, body) => {
+    if (!error && response.statusCode == 200) {
+      let apiData = JSON.parse(body)
+      let pokemonList = apiData.results
+      res.send({ pokemonList, caughtPokemon })
+    }
+  }))
 })
+
 
 app.post('/', (req, res) => {
   caughtPokemon = req.body.caughtPokemon
