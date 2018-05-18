@@ -4,13 +4,14 @@ import React, { Component } from "react";
 
 class CaughtPokemon extends Component {
   render() {
-    let caughtPokemonJSX = this.props.caughtPokemon.map((pokemon) => {
+    let caughtPokemonJSX = this.props.caughtPokemon.map(pokemon => {
       return (
         <div>
           <p>{pokemon.name}</p>
         </div>
-      )
-    })
+      );
+    });
+
     return (
       <div>
         <h3>Your PokeBall</h3>
