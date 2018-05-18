@@ -15,7 +15,9 @@ class App extends Component {
   }
 
   sendId = (cutId) => {
-    this.setState({ pokemonIndex: cutId })
+    this.setState({
+      pokemonIndex: cutId
+    })
   }
 
   addPokemon = (name) => {
@@ -34,7 +36,9 @@ class App extends Component {
     if (!pokemon) {
       alert('What do you want to catch?')
       return
-    } this.setState({ pokemon: pokemon })
+    } this.setState({ 
+      pokemon: pokemon 
+    })
     let searchId = this.props.pokemonList.map(pokemonProps => {
       if (pokemon === pokemonProps.name) {
         let index = pokemonProps.url.substr(34);
@@ -47,10 +51,12 @@ class App extends Component {
   }
 
   render() {
+    const { caughtPokemon } = this.state 
+    const { pokemonList } = this.props
 
     return (
       <div className="containter center">
-        <CaughtPokemon caughtPokemon={this.state.caughtPokemon} />
+        <CaughtPokemon caughtPokemon={caughtPokemon} />
         <nav className="black-text white">
           <div>
             <ul id="nav-mobile">
@@ -63,7 +69,7 @@ class App extends Component {
                   path="/"
                   render={props => (
                     <PokemonList
-                      pokemonList={this.props.pokemonList}
+                      pokemonList={pokemonList}
                       sendId={this.sendId}
                       addPokemon={this.addPokemon}
                     />
@@ -73,7 +79,7 @@ class App extends Component {
                   path="/:pokeid"
                   render={props => (
                     <PokemonDetails
-                      pokemonList={this.props.pokemonList}
+                      pokemonList={pokemonList}
                       id={this.state.pokemonIndex}
                       addPokemon={this.addPokemon}
                     />
@@ -89,13 +95,3 @@ class App extends Component {
 }
 
 export default App;
-
-// let searchId = this.props.pokemonList.map(pokemonProps => {
-// if (pokemon === pokemonProps.name) {
-//   let index = pokemonProps.url.substr(34);
-//   let searchIndex = index.substr(0, index.length - 1);
-//   this.setState({pokemonIndex:searchIndex}) }
-{/* {filteredPokemon.map(pokemon => {
-                    console.log()
-                    return <PokemonDetails pokemon={pokemon}/>
-                  })} */}
