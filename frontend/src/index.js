@@ -157,7 +157,7 @@ let pokemonList = [
   { url: "https://pokeapi.co/api/v2/pokemon/149/", name: "dragonite" },
   { url: "https://pokeapi.co/api/v2/pokemon/150/", name: "mewtwo" },
   { url: "https://pokeapi.co/api/v2/pokemon/151/", name: "mew" }
-];
+]
 
 ReactDOM.render(
   <Router>
