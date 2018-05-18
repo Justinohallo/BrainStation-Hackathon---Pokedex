@@ -17,7 +17,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    axios.get('http://localhost:5000/')
+    axios.get('http://localhost:8080/')
       .then((response) => {
         this.setState({
           pokemonList: response.data.pokemonList,
@@ -26,15 +26,15 @@ class App extends Component {
       })
   }
 
-  componentDidUpdate() {
-    const { pokemonList, caughtPokemon } = this.state
-    axios.post('http://localhost:5000/', { pokemonList, caughtPokemon })
-      .then((response) => {
-        console.log(response)
-      }).catch((error) => {
-        console.log(error)
-      })
-  }
+  // componentDidUpdate() {
+  //   const { pokemonList, caughtPokemon } = this.state
+  //   axios.post('http://localhost:8080/', { pokemonList, caughtPokemon })
+  //     .then((response) => {
+  //       console.log(response)
+  //     }).catch((error) => {
+  //       console.log(error)
+  //     })
+  // }
 
   sendId = (cutId) => {
     this.setState({

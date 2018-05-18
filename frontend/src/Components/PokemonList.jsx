@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import { Route, Link } from "react-router-dom";
 import PokemonDetails from "./PokemonDetails";
-import ReactTable from "react-table";
-import 'react-table/react-table.css'
 
 function search(pokemonSearch) {
   return function(pokemon) {
