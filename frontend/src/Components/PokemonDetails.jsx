@@ -15,7 +15,7 @@ class PokemonDetails extends Component {
     console.log(this.state.pokeData);
   }
 
-  componentWillMount(){
+  componentWillMount() {
     let urlUpdateState = this.props.urlUpdateState
     urlUpdateState(this.props.match.params.pokeid)
   }
@@ -25,15 +25,15 @@ class PokemonDetails extends Component {
       this.setState({
         pokeData: response.data
       })
-      const {match} = this.props
+      const { match } = this.props
       // might be in the wrong spot
     })
   }
 
   render() {
-    const { 
-      pokemonList, 
-      previousPokemon, 
+    const {
+      pokemonList,
+      previousPokemon,
       nextPokemon,
       match
     } = this.props
@@ -54,18 +54,16 @@ class PokemonDetails extends Component {
 
     return (
       <div className="black-text row">
-        {this.props.id}
-        <p className='pokeName'>{pokemonList[id].name.toUpperCase()}</p>
         <div className='col m4'>
-        <Link to={`${[this.props.id]}`}>
-          <i id='arrowIcon'
-            onClick={() => {
-              previousPokemon(this.props.id);
-            }}
-            className="large material-icons"
-          >
-        
-            chevron_left
+          <Link to={`${[this.props.id]}`}>
+            <i id='arrowIcon'
+              onClick={() => {
+                previousPokemon(this.props.id);
+              }}
+              className="large material-icons"
+            >
+
+              chevron_left
         </i> </Link>
         </div>
         <div className="col m4">
@@ -99,16 +97,16 @@ class PokemonDetails extends Component {
           </div>
         </div>
         <div className='col m4'>
-        <Link to={`${[this.props.id]}`}>
-          <i id='arrowIcon'
-            onClick={() => {
-              nextPokemon(this.props.id);
-            }}
-            className="large material-icons"
-          >
-            chevron_right
+          <Link to={`${[this.props.id]}`}>
+            <i id='arrowIcon'
+              onClick={() => {
+                nextPokemon(this.props.id);
+              }}
+              className="large material-icons"
+            >
+              chevron_right
         </i>
-        </Link>
+          </Link>
         </div>
       </div>
     );
