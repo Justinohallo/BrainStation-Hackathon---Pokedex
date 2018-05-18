@@ -36,9 +36,11 @@ class PokemonDetails extends Component {
     } = this.props
 
     const { pokeData } = this.state;
-    let id = this.props.id - 1;
+    let id = Number(this.props.id) - 1;
     let pokemonGroup = this.props.pokemonList
     let pokemonName = this.props.match.params.pokeid
+    let next = Number(this.props.id) + 1
+    let prev = Number(this.props.id) -1 
     
     let icons = pokeData.map((data, i) => {
       const index = this.props.id -1
@@ -54,6 +56,7 @@ class PokemonDetails extends Component {
       <div className="black-text row">
 
         <div className="col m4">
+        <Link to={`${[prev]}`}>
           <i
             id="arrowIcon"
             onClick={() => {
@@ -63,6 +66,7 @@ class PokemonDetails extends Component {
           >
             chevron_left
           </i>
+          </Link>
         </div>
         <div className="col m4">
           <div className="card">
@@ -111,7 +115,7 @@ class PokemonDetails extends Component {
           </div>
         </div>
         <div className='col m4'>
-          <Link to={`${[this.props.id]}`}>
+          <Link to={`${[next]}`}>
             <i id='arrowIcon'
               onClick={() => {
                 nextPokemon(this.props.id);
