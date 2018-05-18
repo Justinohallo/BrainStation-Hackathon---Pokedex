@@ -43,11 +43,12 @@ class App extends Component {
     })
   }
 
-  addPokemon = (name) => {
+  addPokemon = (name, i) => {
     const { caughtPokemon } = this.state
 
     caughtPokemon.push({
-      name: name
+      name: name,
+      index: i
     })
 
     this.setState({
@@ -71,18 +72,7 @@ class App extends Component {
     if (!pokemon) {
       alert('What do you want to catch?')
       return
-    } this.setState({ 
-      pokemon: pokemon 
-    })
-    let searchId = this.props.pokemonList.map(pokemonProps => {
-      if (pokemon === pokemonProps.name) {
-        let index = pokemonProps.url.substr(34);
-        let searchIndex = index.substr(0, index.length - 1);
-        this.setState({ pokemonIndex: searchIndex })
-        console.log(this.state.pokemonIndex)
-      }
-    })
-
+    } this.setState({ pokemon: pokemon })
   }
 
   render() {
@@ -95,7 +85,7 @@ class App extends Component {
               <Link id='homeLink' className="black-text" to="/">
                 PoKéMoN
               </Link>
-              <CaughtPokemon caughtPokemon={caughtPokemon} />
+              <CaughtPokemon caughtPokemon={caughtPokemon} pokemonList={this.props.pokemonList} />
               <Switch>
                 <Route
                   exact

@@ -5,37 +5,35 @@ import React, { Component } from "react";
 class PokemonDetails extends Component {
   render() {
     let id = this.props.id - 1;
-    console.log("id props", this.props.id);
-    console.log("id local", id);
-    console.log(this.props.pokemonList);
-    console.log(this.props.pokemonList[0]);
-    console.log(this.props.pokemonList[id].name);
+
     return (
       <div className="black-text row">
-              {this.props.id}
-        <p className='pokeName'>{this.props.pokemonList[id].name.toUpperCase()}</p>
-      <div className='col m4'>
-        <i
-          onClick={() => {
-            this.props.previousPokemon(this.props.id);
-          }}
-          className="material-icons"
-        >
-          chevron_left
-        </i>
+        {this.props.id}
+        <p className="pokeName">
+          {this.props.pokemonList[id].name.toUpperCase()}
+        </p>
+        <div className="col m4">
+          <i
+            onClick={() => {this.props.previousPokemon(this.props.id);}}
+            className="large material-icons"
+          >
+            chevron_left
+          </i>
         </div>
-        <div className='col m4'>
-        <img id='detailPokemon' src={`/img/${[this.props.id]}.png`} alt="pokemon" />
+        <div className="col m4">
+          <img
+            id="detailPokemon"
+            src={`/img/${[this.props.id]}.png`}
+            alt="pokemon"
+          />
         </div>
-        <div className='col m4'>
-        <i
-          onClick={() => {
-            this.props.nextPokemon(this.props.id);
-          }}
-          className="material-icons"
-        >
-          chevron_right
-        </i>
+        <div className="col m4">
+          <i
+            onClick={() => {this.props.nextPokemon(this.props.id);}}
+            className="large material-icons"
+          >
+            chevron_right
+          </i>
         </div>
       </div>
     );

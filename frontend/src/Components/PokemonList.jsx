@@ -65,36 +65,42 @@ class PokemonList extends Component {
 class Pokemon extends Component {
   handleClick = () => {
     this.props.addPokemon(this.props.pokemon.name);
+    this.songPlayer.play();
   };
 
   render() {
     return (
-            <div className="col m3">
-              <div className="card">
-                <div className="card-image">
-                  <img src={`/img/${this.props.cutId}.png`} alt="pokemon" />
-                  {/* <span className="card-title">Card Title</span> */}
-                  <img
-                    className="halfway-fab waves-effect waves-light white"
-                    onClick={this.handleClick}
-                    id="pokeball"
-                    src="/img/pokeball.png"
-                    alt="pokeball"
-                  />
-                  <div className="card-content">
-                    <Link
-                      className="black-text"
-                      to={`/${this.props.cutId}`}
-                      onClick={() => {
-                        this.props.sendId(this.props.cutId);
-                      }}
-                    >
-                      <p className='pokeName'> {this.props.pokemon.name.toUpperCase()} </p>
-                    </Link>
-                  </div>
-                </div>
-              </div>
+      <div className="col s12 m4 l3">
+        <div className="card">
+          <div className="card-image">
+            <img src={`/img/${this.props.cutId}.png`} alt="pokemon" />
+            {/* <span className="card-title">Card Title</span> */}
+            <img
+              className="halfway-fab white"
+              onClick={this.handleClick}
+              id="pokeball"
+              src="/img/pokeball.png"
+              alt="pokeball"
+            />
+            <audio ref={element => (this.songPlayer = element)}>
+              <source src="/audio/pokeball.mp3" type="audio/mpeg" />
+            </audio>
+            <div className="card-content">
+              <Link
+                className="black-text"
+                to={`/${this.props.cutId}`}
+                onClick={() => {
+                  this.props.sendId(this.props.cutId);
+                }}
+              >
+                <p className="pokeName">
+                  {this.props.pokemon.name.toUpperCase()}{" "}
+                </p>
+              </Link>
             </div>
+          </div>
+        </div>
+      </div>
     );
   }
 }
