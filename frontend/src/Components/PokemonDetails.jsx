@@ -1,9 +1,5 @@
 import React, { Component } from "react";
-import axios from 'axios'
-import { Route, Link } from "react-router-dom";
-
-// import { Route, Link } from "react-router-dom";
-// import PokemonList from './PokemonList'
+import axios from "axios";
 
 class PokemonDetails extends Component {
   constructor(props) {
@@ -50,12 +46,12 @@ class PokemonDetails extends Component {
     })
 
     if (pokeData.length < 1) {
-      return <img id="ball" src="/img/ball.gif" alt="loading" />;
-    } 
-
+    <img id="ball" src="/img/card.png" alt="loading" />
+    }
 
     return (
       <div className="black-text row">
+<<<<<<< HEAD
         <div className='col m4'>
           <Link to={`${[this.props.id]}`}>
             <i id='arrowIcon'
@@ -67,6 +63,19 @@ class PokemonDetails extends Component {
 
               chevron_left
         </i> </Link>
+=======
+
+        <div className="col m4">
+          <i
+            id="arrowIcon"
+            onClick={() => {
+              previousPokemon(this.props.id);
+            }}
+            className="large material-icons"
+          >
+            chevron_left
+          </i>
+>>>>>>> styling
         </div>
         <div className="col m4">
           <div className="card">
