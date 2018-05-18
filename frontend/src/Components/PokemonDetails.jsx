@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import { Link } from 'react-router-dom'
 
 class PokemonDetails extends Component {
   constructor(props) {
@@ -51,19 +52,6 @@ class PokemonDetails extends Component {
 
     return (
       <div className="black-text row">
-<<<<<<< HEAD
-        <div className='col m4'>
-          <Link to={`${[this.props.id]}`}>
-            <i id='arrowIcon'
-              onClick={() => {
-                previousPokemon(this.props.id);
-              }}
-              className="large material-icons"
-            >
-
-              chevron_left
-        </i> </Link>
-=======
 
         <div className="col m4">
           <i
@@ -75,7 +63,6 @@ class PokemonDetails extends Component {
           >
             chevron_left
           </i>
->>>>>>> styling
         </div>
         <div className="col m4">
           <div className="card">
