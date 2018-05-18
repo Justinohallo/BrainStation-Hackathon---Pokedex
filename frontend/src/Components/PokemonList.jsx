@@ -5,7 +5,9 @@ import PokemonDetails from "./PokemonDetails";
 class PokemonList extends Component {
   constructor(props) {
     super(props);
-    this.state = { pokemonSearch: "" };
+    this.state = { 
+      pokemonSearch: "" 
+    };
   }
 
   searchPokemon = pokemonSearch => {
@@ -14,18 +16,21 @@ class PokemonList extends Component {
       alert("What do you want to catch?");
       return;
     }
-    this.setState({ pokemon: pokemonSearch });
+    this.setState({ 
+      pokemon: pokemonSearch 
+    });
     console.log(this.state.pokemon)
 
   };
 
   render() {
+    const { pokemonList } = this.props
     
-    let filteredPokemon = this.props.pokemonList.filter(pokemon => {
+    let filteredPokemon = pokemonList.filter(pokemon => {
       return pokemon.name.indexOf(this.state.pokemon) !== -1;
     });
 
-    filteredPokemon = this.props.pokemonList.map((pokemon, i) => {
+    filteredPokemon = pokemonList.map((pokemon, i) => {
       let id = pokemon.url.substr(34);
       let cutId = id.substr(0, id.length - 1);
       return (
