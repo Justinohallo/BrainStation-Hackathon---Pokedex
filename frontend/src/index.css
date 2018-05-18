@@ -6,6 +6,7 @@ body {
 
 #pokeball {
   width: 20%;
+  cursor: pointer;
 }
 
 @font-face {
