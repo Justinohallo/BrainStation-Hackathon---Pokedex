@@ -17,7 +17,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    axios.get('http://localhost:8080/')
+    axios.get('http://localhost:5050/')
       .then((response) => {
         this.setState({
           pokemonList: response.data.pokemonList,
@@ -28,7 +28,7 @@ class App extends Component {
 
   componentDidUpdate() {
     const { caughtPokemon } = this.state
-    axios.post('http://localhost:8080/', { caughtPokemon })
+    axios.post('http://localhost:5050/', { caughtPokemon })
       .then((response) => {
         console.log(response)
       }).catch((error) => {
@@ -88,7 +88,7 @@ class App extends Component {
     const { pokemonList, caughtPokemon } = this.state
     if(pokemonList.length < 1){
       return (
-        <p> Loading... </p>
+        <img id='loading' src='/img/ah.gif' alt='loading'/>
       )
     }
 
