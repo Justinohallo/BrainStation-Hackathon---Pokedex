@@ -69,10 +69,11 @@ class Pokemon extends Component {
   handleClick = () => {
     const { addPokemon, pokemon } = this.props
     addPokemon(pokemon.name);
+    this.songPlayer.play();
   };
 
   render() {
-    const { cutId, pokemon } = this.props
+    const { cutId, pokemon, sendId } = this.props
     return (
       <div className="col m3">
         <div className="card">
@@ -86,12 +87,16 @@ class Pokemon extends Component {
               src="/img/pokeball.png"
               alt="pokeball"
             />
+
+            <audio ref={element => (this.songPlayer = element)}>
+              <source src="/audio/pokeball.mp3" type="audio/mpeg" />
+            </audio>
             <div className="card-content">
               <Link
                 className="black-text"
                 to={`/${cutId}`}
                 onClick={() => {
-                  this.props.sendId(cutId);
+                  sendId(cutId);
                 }}
               >
                 <p className='pokeName'> {pokemon.name.toUpperCase()} </p>

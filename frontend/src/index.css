@@ -10,7 +10,7 @@ body {
 
 @font-face {
   font-family: Pokemon;
-  src: url(/pokemon.ttf);
+  src: url(/font/pokemon.ttf);
 }
 
 #homeLink {
@@ -22,7 +22,7 @@ body {
 
 @font-face {
   font-family: RF Krabuler Regular;
-  src: url(/rf.ttf);
+  src: url(/font/rf.ttf);
 }
 
 .pokeName {

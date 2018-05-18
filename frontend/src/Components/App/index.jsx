@@ -34,8 +34,8 @@ class App extends Component {
   }
 
   componentDidUpdate() {
-    const { pokemonList, caughtPokemon } = this.state
-    axios.post('http://localhost:8080/', { pokemonList, caughtPokemon })
+    const { caughtPokemon } = this.state
+    axios.post('http://localhost:8080/', { caughtPokemon })
       .then((response) => {
         console.log(response)
       }).catch((error) => {
@@ -49,11 +49,12 @@ class App extends Component {
     })
   }
 
-  addPokemon = (name) => {
+  addPokemon = (name, i) => {
     const { caughtPokemon } = this.state
 
     caughtPokemon.push({
-      name: name
+      name: name,
+      index: i
     })
 
     this.setState({
@@ -76,21 +77,12 @@ class App extends Component {
   }
 
   searchPokemon = (e, pokemon) => {
-    const { pokemonList } = this.props
     if (!pokemon) {
       alert('What do you want to catch?')
       return
     } this.setState({
       pokemon: pokemon
     })
-    let searchId = pokemonList.map(pokemonProps => {
-      if (pokemon === pokemonProps.name) {
-        let index = pokemonProps.url.substr(34);
-        let searchIndex = index.substr(0, index.length - 1);
-        this.setState({ pokemonIndex: searchIndex })
-      }
-    })
-
   }
 
   render() {
