@@ -7,7 +7,6 @@ const bodyParser = require('body-parser')
 let pokemonList = []
 let caughtPokemon = []
 
-
 // middleware
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())

@@ -2,60 +2,52 @@ import React, { Component } from "react";
 import { Route, Link } from "react-router-dom";
 import PokemonDetails from "./PokemonDetails";
 
+function search (pokemonSearch) {
+  return function(pokemon){
+    return pokemon.name.toLowerCase().includes(pokemonSearch.toLowerCase()) || !pokemonSearch;
+  }
+}
+
 class PokemonList extends Component {
   constructor(props) {
     super(props);
     this.state = { 
       pokemonSearch: "" 
     };
+    this.searchHandler=this.searchHandler.bind(this)
   }
+  
 
-  searchPokemon = pokemonSearch => {
-    console.log(pokemonSearch)
-    if (!pokemonSearch) {
-      alert("What do you want to catch?");
-      return;
-    }
+  searchHandler = (event) => {
     this.setState({ 
-      pokemon: pokemonSearch 
-    });
-    console.log(this.state.pokemon)
-
+      pokemonSearch: event.target.value
+     });
   };
 
   render() {
-    const { pokemonList } = this.props
-    
-    let filteredPokemon = pokemonList.filter(pokemon => {
-      return pokemon.name.indexOf(this.state.pokemon) !== -1;
-    });
 
-    filteredPokemon = pokemonList.map((pokemon, i) => {
+    let listJSX = this.props.pokemonList.filter(search(this.state.pokemonSearch)).map((pokemon, i) => {
       let id = pokemon.url.substr(34);
       let cutId = id.substr(0, id.length - 1);
       return (
         <Pokemon key={i} pokemon={pokemon} cutId={cutId} addPokemon={this.props.addPokemon} sendId={this.props.sendId}/>
       );
     });
+        
 
     return (
-      <div className="black-text">
-        <div className="container center">
+        <div className="black-text container center">
           <form id="name-form" className="col s12">
             <div className="input-field col s6">
               <input
-                ref="name"
                 type="text"
                 // value={this.state.pokemonSearch}
-                onChange={() => {
-                  this.searchPokemon(this.refs.name.value);
-                }}
+                onChange={this.searchHandler}
               />
               <label htmlFor="POKEMON">POKEMON</label>
             </div>
           </form>
-        </div>
-        {filteredPokemon}
+        {listJSX}
         <Route path="/:pokeid" render={() => <PokemonDetails />} />
       </div>
     );

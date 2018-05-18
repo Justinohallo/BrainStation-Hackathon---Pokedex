@@ -9,7 +9,6 @@ class App extends Component {
     super(props)
     this.state = {
       pokemonIndex: 0,
-      pokemon: '',
       caughtPokemon: []
     }
   }
@@ -30,24 +29,6 @@ class App extends Component {
     this.setState({
       caughtPokemon
     })
-  }
-
-  searchPokemon = (e, pokemon) => {
-    if (!pokemon) {
-      alert('What do you want to catch?')
-      return
-    } this.setState({ 
-      pokemon: pokemon 
-    })
-    let searchId = this.props.pokemonList.map(pokemonProps => {
-      if (pokemon === pokemonProps.name) {
-        let index = pokemonProps.url.substr(34);
-        let searchIndex = index.substr(0, index.length - 1);
-        this.setState({ pokemonIndex: searchIndex })
-        console.log(this.state.pokemonIndex)
-      }
-    })
-
   }
 
   render() {
