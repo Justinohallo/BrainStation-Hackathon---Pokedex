@@ -4,6 +4,10 @@ body {
   font-family: sans-serif;
 }
 
+#loading {
+  width: 100%;
+}
+
 #pokeball {
   width: 20%;
   cursor: pointer;
