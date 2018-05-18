@@ -9,7 +9,6 @@ class App extends Component {
     super(props)
     this.state = {
       pokemonIndex: 0,
-      pokemon: '',
       caughtPokemon: []
     }
   }
