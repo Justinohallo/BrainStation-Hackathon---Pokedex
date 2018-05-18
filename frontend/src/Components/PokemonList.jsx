@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { Route, Link } from "react-router-dom";
 import PokemonDetails from "./PokemonDetails";
-import '../index.css'
+import "../index.css";
 
 function search(pokemonSearch) {
-  return function (pokemon) {
+  return function(pokemon) {
     return (
       pokemon.name.toLowerCase().includes(pokemonSearch.toLowerCase()) ||
       !pokemonSearch
@@ -16,8 +16,8 @@ class PokemonList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      pokemonSearch: '',
-      currentPokemon: ''
+      pokemonSearch: "",
+      currentPokemon: ""
     };
     this.searchHandler = this.searchHandler.bind(this);
   }
@@ -29,8 +29,8 @@ class PokemonList extends Component {
   };
 
   render() {
-    const { pokemonList, addPokemon, sendId } = this.props
-    const { pokemonSearch } = this.state
+    const { pokemonList, addPokemon, sendId } = this.props;
+    const { pokemonSearch } = this.state;
     let listJSX = pokemonList
       .filter(search(pokemonSearch))
       .map((pokemon, i) => {
@@ -67,18 +67,17 @@ class PokemonList extends Component {
 
 class Pokemon extends Component {
   handleClick = () => {
-    const { addPokemon, pokemon } = this.props
-    addPokemon(pokemon.url)
-    this.songPlayer.play()
+    const { addPokemon, pokemon } = this.props;
+    addPokemon(pokemon.url);
+    this.songPlayer.play();
   };
 
   render() {
-    const { cutId, pokemon, sendId } = this.props
+    const { cutId, pokemon, sendId } = this.props;
     return (
       <div className="col m3">
         <div className="card">
           <div className="card-image">
-            <img className="responsive-img" src={`/img/${cutId}.png`} alt="pokemon" />
             <div className="card-content center-align">
               <Link
                 className="black-text"
@@ -87,7 +86,12 @@ class Pokemon extends Component {
                   sendId(cutId);
                 }}
               >
-                <p className='pokeName'> {pokemon.name.toUpperCase()} </p>
+                <img
+                  className="responsive-img"
+                  src={`/img/${cutId}.png`}
+                  alt="pokemon"
+                />
+                <p className="pokeName"> {pokemon.name.toUpperCase()} </p>
               </Link>
               <img
                 className="waves-effect waves-light white pokeballImg"

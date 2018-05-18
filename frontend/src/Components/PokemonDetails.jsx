@@ -48,6 +48,10 @@ class PokemonDetails extends Component {
       return <img id="ball" src="/img/ball.gif" alt="loading" />;
     }
 
+    // if (pokeData[id].type[0] === fire ) {
+    //   return <img
+    // }
+
     return (
       <div className="black-text row">
         {this.props.id}
@@ -75,16 +79,16 @@ class PokemonDetails extends Component {
               {pokemonList[id].name.toUpperCase()}
             </span>
             <div className="card-content">
-            <div className="row">
-            <div className="col s4">
-              <p>{pokeData[id].height}</p>
-              </div>
-              <div className="col s4">
-              <p>{pokeData[id].type[0].toUpperCase()}</p>
-              </div>
-              <div className="col s4">
-              <p>{pokeData[id].weight}</p>
-              </div>
+              <div className="row">
+                <div className="col s4">
+                  <p>{pokeData[id].height}</p>
+                </div>
+                <div className="col s4">
+                  <p>{pokeData[id].type[0].toUpperCase()}</p>
+                </div>
+                <div className="col s4">
+                  <p>{pokeData[id].weight}</p>
+                </div>
               </div>
               <p>{pokeData[id].description}</p>
             </div>
