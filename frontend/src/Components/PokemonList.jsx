@@ -33,6 +33,7 @@ class PokemonList extends Component {
         <Pokemon key={i} pokemon={pokemon} cutId={cutId} addPokemon={this.props.addPokemon} sendId={this.props.sendId}/>
       );
     });
+
         
 
     return (
@@ -44,10 +45,12 @@ class PokemonList extends Component {
                 // value={this.state.pokemonSearch}
                 onChange={this.searchHandler}
               />
-              <label htmlFor="POKEMON">POKEMON</label>
+              <label htmlFor="SEARCH POKEMON">SEARCH POKEMON</label>
             </div>
           </form>
-        {listJSX}
+          <div className='row'>
+            {listJSX}
+        </div>
         <Route path="/:pokeid" render={() => <PokemonDetails />} />
       </div>
     );
@@ -64,11 +67,15 @@ class Pokemon extends Component {
   render() {
     return (
       <div>
-        <Link to={`/${this.props.cutId}`} onClick={() => { this.props.sendId(this.props.cutId) }}>
+        <div className='row'>
+        <div className='col m6'>
+        <Link className='black-text' to={`/${this.props.cutId}`} onClick={() => { this.props.sendId(this.props.cutId) }}>
           <img src={`/img/${this.props.cutId}.png`} alt="pokemon" />
           <p> {this.props.pokemon.name} </p>
         </Link>
-        <button onClick={this.handleClick}>Caught!</button>
+        <img onClick={this.handleClick} id='pokeball' src='/img/pokeball.png' alt='pokeball'/>
+      </div>
+      </div>
       </div>
     )
   }
