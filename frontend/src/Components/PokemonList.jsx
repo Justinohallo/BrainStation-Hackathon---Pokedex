@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Route, Link } from "react-router-dom";
 import PokemonDetails from "./PokemonDetails";
+import '../index.css'
 
 function search(pokemonSearch) {
   return function (pokemon) {
@@ -77,20 +78,8 @@ class Pokemon extends Component {
       <div className="col m3">
         <div className="card">
           <div className="card-image">
-            <img src={`/img/${cutId}.png`} alt="pokemon" />
-            {/* <span className="card-title">Card Title</span> */}
-            <img
-              className="halfway-fab waves-effect waves-light white"
-              onClick={this.handleClick}
-              id="pokeball"
-              src="/img/pokeball.png"
-              alt="pokeball"
-            />
-
-            <audio ref={element => (this.songPlayer = element)}>
-              <source src="/audio/pokeball.mp3" type="audio/mpeg" />
-            </audio>
-            <div className="card-content">
+            <img className="responsive-img" src={`/img/${cutId}.png`} alt="pokemon" />
+            <div className="card-content center-align">
               <Link
                 className="black-text"
                 to={`/${cutId}`}
@@ -100,6 +89,16 @@ class Pokemon extends Component {
               >
                 <p className='pokeName'> {pokemon.name.toUpperCase()} </p>
               </Link>
+              <img
+                className="waves-effect waves-light white pokeballImg"
+                onClick={this.handleClick}
+                id="pokeball"
+                src="/img/pokeball.png"
+                alt="pokeball"
+              />
+              <audio ref={element => (this.songPlayer = element)}>
+                <source src="/audio/pokeball.mp3" type="audio/mpeg" />
+              </audio>
             </div>
           </div>
         </div>

@@ -63,3 +63,9 @@ body {
 #pokeCardName {
   text-align: center;
 }
+
+.pokeballImg {
+  display:block;
+  margin-left: auto;
+  margin-right: auto;
+}
