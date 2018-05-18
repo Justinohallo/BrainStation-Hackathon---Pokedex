@@ -12,7 +12,8 @@ class App extends Component {
     this.state = {
       pokemonList: [],
       pokemonIndex: 0,
-      caughtPokemon: []
+      caughtPokemon: [],
+      pokeData: []
     }
   }
 
@@ -22,6 +23,12 @@ class App extends Component {
         this.setState({
           pokemonList: response.data.pokemonList,
           caughtPokemon: response.data.caughtPokemon
+        })
+      })
+    axios.get('http://localhost:8080/pokeData')
+      .then((response) => {
+        this.setState({
+          pokeData: response.data
         })
       })
   }
@@ -55,73 +62,76 @@ class App extends Component {
   }
 
   nextPokemon = () => {
+    const { pokemonIndex } = this.state
     this.setState({
-      pokemonIndex: Number(this.state.pokemonIndex) + 1
-     } )
-  } 
+      pokemonIndex: Number(pokemonIndex) + 1
+    })
+  }
 
   previousPokemon = () => {
+    const { pokemonIndex } = this.state
     this.setState({
-      pokemonIndex: Number(this.state.pokemonIndex) -1
+      pokemonIndex: Number(pokemonIndex) - 1
     })
   }
 
   searchPokemon = (e, pokemon) => {
+    const { pokemonList } = this.props
     if (!pokemon) {
       alert('What do you want to catch?')
       return
-    } this.setState({ 
-      pokemon: pokemon 
+    } this.setState({
+      pokemon: pokemon
     })
-    let searchId = this.props.pokemonList.map(pokemonProps => {
+    let searchId = pokemonList.map(pokemonProps => {
       if (pokemon === pokemonProps.name) {
         let index = pokemonProps.url.substr(34);
         let searchIndex = index.substr(0, index.length - 1);
         this.setState({ pokemonIndex: searchIndex })
-        console.log(this.state.pokemonIndex)
       }
     })
 
   }
 
   render() {
-    const { pokemonList, caughtPokemon } = this.state
+    const { pokemonList, caughtPokemon, pokeData } = this.state
 
     return (
       <div className="center">
-          <div>
-            <ul id="nav-mobile">
-              <Link id='homeLink' className="black-text" to="/">
-                PoKéMoN
+        <div>
+          <ul id="nav-mobile">
+            <Link id='homeLink' className="black-text" to="/">
+              PoKéMoN
               </Link>
-              <CaughtPokemon caughtPokemon={caughtPokemon} />
-              <Switch>
-                <Route
-                  exact
-                  path="/"
-                  render={props => (
-                    <PokemonList
-                      pokemonList={pokemonList}
-                      sendId={this.sendId}
-                      addPokemon={this.addPokemon}
-                    />
-                  )}
-                />
-                <Route
-                  path="/:pokeid"
-                  render={props => (
-                    <PokemonDetails
-                      pokemonList={pokemonList}
-                      id={this.state.pokemonIndex}
-                      addPokemon={this.addPokemon}
-                      nextPokemon={this.nextPokemon}
-                      previousPokemon={this.previousPokemon}
-                    />
-                  )}
-                />
-              </Switch>
-            </ul>
-          </div>
+            <CaughtPokemon caughtPokemon={caughtPokemon} />
+            <Switch>
+              <Route
+                exact
+                path="/"
+                render={props => (
+                  <PokemonList
+                    pokemonList={pokemonList}
+                    sendId={this.sendId}
+                    addPokemon={this.addPokemon}
+                  />
+                )}
+              />
+              <Route
+                path="/:pokeid"
+                render={props => (
+                  <PokemonDetails
+                    pokemonList={pokemonList}
+                    id={this.state.pokemonIndex}
+                    addPokemon={this.addPokemon}
+                    nextPokemon={this.nextPokemon}
+                    previousPokemon={this.previousPokemon}
+                    pokeData={pokeData}
+                  />
+                )}
+              />
+            </Switch>
+          </ul>
+        </div>
       </div>
     );
   }

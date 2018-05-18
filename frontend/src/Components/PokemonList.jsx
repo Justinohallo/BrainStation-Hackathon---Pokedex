@@ -3,7 +3,7 @@ import { Route, Link } from "react-router-dom";
 import PokemonDetails from "./PokemonDetails";
 
 function search(pokemonSearch) {
-  return function(pokemon) {
+  return function (pokemon) {
     return (
       pokemon.name.toLowerCase().includes(pokemonSearch.toLowerCase()) ||
       !pokemonSearch
@@ -14,10 +14,9 @@ function search(pokemonSearch) {
 class PokemonList extends Component {
   constructor(props) {
     super(props);
-    this.state = { 
-      pokemonSearch: "" ,
+    this.state = {
+      pokemonSearch: '',
       currentPokemon: ''
-
     };
     this.searchHandler = this.searchHandler.bind(this);
   }
@@ -29,8 +28,10 @@ class PokemonList extends Component {
   };
 
   render() {
-    let listJSX = this.props.pokemonList
-      .filter(search(this.state.pokemonSearch))
+    const { pokemonList, addPokemon, sendId } = this.props
+    const { pokemonSearch } = this.state
+    let listJSX = pokemonList
+      .filter(search(pokemonSearch))
       .map((pokemon, i) => {
         let id = pokemon.url.substr(34);
         let cutId = id.substr(0, id.length - 1);
@@ -39,8 +40,8 @@ class PokemonList extends Component {
             key={i}
             pokemon={pokemon}
             cutId={cutId}
-            addPokemon={this.props.addPokemon}
-            sendId={this.props.sendId}
+            addPokemon={addPokemon}
+            sendId={sendId}
           />
         );
       });
@@ -66,37 +67,39 @@ class PokemonList extends Component {
 
 class Pokemon extends Component {
   handleClick = () => {
-    this.props.addPokemon(this.props.pokemon.name);
+    const { addPokemon, pokemon } = this.props
+    addPokemon(pokemon.name);
   };
 
   render() {
+    const { cutId, pokemon } = this.props
     return (
-            <div className="col m3">
-              <div className="card">
-                <div className="card-image">
-                  <img src={`/img/${this.props.cutId}.png`} alt="pokemon" />
-                  {/* <span className="card-title">Card Title</span> */}
-                  <img
-                    className="halfway-fab waves-effect waves-light white"
-                    onClick={this.handleClick}
-                    id="pokeball"
-                    src="/img/pokeball.png"
-                    alt="pokeball"
-                  />
-                  <div className="card-content">
-                    <Link
-                      className="black-text"
-                      to={`/${this.props.cutId}`}
-                      onClick={() => {
-                        this.props.sendId(this.props.cutId);
-                      }}
-                    >
-                      <p className='pokeName'> {this.props.pokemon.name.toUpperCase()} </p>
-                    </Link>
-                  </div>
-                </div>
-              </div>
+      <div className="col m3">
+        <div className="card">
+          <div className="card-image">
+            <img src={`/img/${cutId}.png`} alt="pokemon" />
+            {/* <span className="card-title">Card Title</span> */}
+            <img
+              className="halfway-fab waves-effect waves-light white"
+              onClick={this.handleClick}
+              id="pokeball"
+              src="/img/pokeball.png"
+              alt="pokeball"
+            />
+            <div className="card-content">
+              <Link
+                className="black-text"
+                to={`/${cutId}`}
+                onClick={() => {
+                  this.props.sendId(cutId);
+                }}
+              >
+                <p className='pokeName'> {pokemon.name.toUpperCase()} </p>
+              </Link>
             </div>
+          </div>
+        </div>
+      </div>
     );
   }
 }

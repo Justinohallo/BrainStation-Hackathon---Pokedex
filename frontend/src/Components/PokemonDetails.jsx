@@ -4,37 +4,44 @@ import React, { Component } from "react";
 
 class PokemonDetails extends Component {
   render() {
+    const { 
+      pokeData, 
+      pokemonList, 
+      previousPokemon, 
+      nextPokemon 
+    } = this.props
+
     let id = this.props.id - 1;
-    console.log("id props", this.props.id);
-    console.log("id local", id);
-    console.log(this.props.pokemonList);
-    console.log(this.props.pokemonList[0]);
-    console.log(this.props.pokemonList[id].name);
+    
     return (
       <div className="black-text row">
-              {this.props.id}
-        <p className='pokeName'>{this.props.pokemonList[id].name.toUpperCase()}</p>
-      <div className='col m4'>
-        <i
-          onClick={() => {
-            this.props.previousPokemon(this.props.id);
-          }}
-          className="material-icons"
-        >
-          chevron_left
+        {this.props.id}
+        <p className='pokeName'>{pokemonList[id].name.toUpperCase()}</p>
+        <div className='col m4'>
+          <i
+            onClick={() => {
+              previousPokemon(this.props.id);
+            }}
+            className="material-icons"
+          >
+            chevron_left
         </i>
         </div>
         <div className='col m4'>
-        <img id='detailPokemon' src={`/img/${[this.props.id]}.png`} alt="pokemon" />
+          <img id='detailPokemon' src={`/img/${[this.props.id]}.png`} alt="pokemon" />
+          <p>{pokeData[id].description}</p>
+          <p>{pokeData[id].type[0]}</p>
+          <p>{pokeData[id].height}</p>
+          <p>{pokeData[id].weight}</p>
         </div>
         <div className='col m4'>
-        <i
-          onClick={() => {
-            this.props.nextPokemon(this.props.id);
-          }}
-          className="material-icons"
-        >
-          chevron_right
+          <i
+            onClick={() => {
+              nextPokemon(this.props.id);
+            }}
+            className="material-icons"
+          >
+            chevron_right
         </i>
         </div>
       </div>
