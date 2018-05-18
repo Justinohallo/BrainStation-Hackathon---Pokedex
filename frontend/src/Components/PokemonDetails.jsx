@@ -52,17 +52,17 @@ class PokemonDetails extends Component {
 
     return (
       <div className="black-text row">
-        <div className='col m4'>
-          <Link to={`${[this.props.id]}`}>
-            <i id='arrowIcon'
-              onClick={() => {
-                previousPokemon(this.props.id);
-              }}
-              className="large material-icons"
-            >
 
-              chevron_left
-        </i> </Link>
+        <div className="col m4">
+          <i
+            id="arrowIcon"
+            onClick={() => {
+              previousPokemon(this.props.id);
+            }}
+            className="large material-icons"
+          >
+            chevron_left
+          </i>
         </div>
         <div className="col m4">
           <div className="card">
