@@ -4,6 +4,10 @@ body {
   font-family: sans-serif;
 }
 
-/* #pokeball {
-  width: 5%;
-} */
+#pokeball {
+  width: 15%;
+}
+
+.card-content {
+  font-size: 3rem;
+}
