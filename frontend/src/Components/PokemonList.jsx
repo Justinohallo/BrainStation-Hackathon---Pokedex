@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import { Route, Link } from "react-router-dom";
 import PokemonDetails from "./PokemonDetails";
-import ReactTable from "react-table";
-import 'react-table/react-table.css'
 
 function search(pokemonSearch) {
   return function(pokemon) {
@@ -16,15 +14,8 @@ function search(pokemonSearch) {
 class PokemonList extends Component {
   constructor(props) {
     super(props);
-<<<<<<< HEAD
-    this.state = { 
-      pokemonSearch: "" ,
-      currentPokemon: ''
-
-=======
     this.state = {
       pokemonSearch: ""
->>>>>>> searchbar
     };
     this.searchHandler = this.searchHandler.bind(this);
   }
