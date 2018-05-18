@@ -10,6 +10,7 @@ class PokemonDetails extends Component {
     this.state = {
       pokeData: []
     }
+    console.log(this.state.pokeData)
   }
 
   componentDidMount() {
@@ -31,13 +32,19 @@ class PokemonDetails extends Component {
     const { pokeData } = this.state
 
     let id = this.props.id - 1;
+
+    if(pokeData.length < 1){
+      return (
+        <p> Loading... </p>
+      )
+    }
     
     return (
       <div className="black-text row">
         {this.props.id}
         <p className='pokeName'>{pokemonList[id].name.toUpperCase()}</p>
         <div className='col m4'>
-          <i
+          <i id='arrowIcon'
             onClick={() => {
               previousPokemon(this.props.id);
             }}
@@ -54,7 +61,7 @@ class PokemonDetails extends Component {
           <p>{pokeData[id].weight}</p>
         </div>
         <div className='col m4'>
-          <i
+          <i id='arrowIcon'
             onClick={() => {
               nextPokemon(this.props.id);
             }}

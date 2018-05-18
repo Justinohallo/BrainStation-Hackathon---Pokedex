@@ -38,3 +38,8 @@ body {
   margin-bottom: 0px;
   width: 20%;
 }
+
+#arrowIcon:hover {
+  color: rgb(0, 255, 234);
+  cursor: pointer;
+}

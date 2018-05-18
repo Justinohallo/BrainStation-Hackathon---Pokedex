@@ -80,6 +80,11 @@ class App extends Component {
 
   render() {
     const { pokemonList, caughtPokemon } = this.state
+    if(pokemonList.length < 1){
+      return (
+        <p> Loading... </p>
+      )
+    }
 
     return (
       <div className="center">
