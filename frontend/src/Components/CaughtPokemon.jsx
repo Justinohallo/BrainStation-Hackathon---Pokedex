@@ -1,6 +1,4 @@
 import React, { Component } from "react";
-// import { Route, Link } from "react-router-dom";
-// import PokemonList from './PokemonList'
 
 import '../index.css'
 

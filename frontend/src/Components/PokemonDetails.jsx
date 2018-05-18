@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import axios from "axios";
-// import { Route, Link } from "react-router-dom";
-// import PokemonList from './PokemonList'
 
 class PokemonDetails extends Component {
   constructor(props) {
@@ -33,12 +31,12 @@ class PokemonDetails extends Component {
     })
 
     if (pokeData.length < 1) {
-      return <img id="ball" src="/img/ball.gif" alt="loading" />;
-    } 
-
+    <img id="ball" src="/img/card.png" alt="loading" />
+    }
 
     return (
       <div className="black-text row">
+
         <div className="col m4">
           <i
             id="arrowIcon"
