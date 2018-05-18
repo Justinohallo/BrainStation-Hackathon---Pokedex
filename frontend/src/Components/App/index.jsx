@@ -42,11 +42,11 @@ class App extends Component {
     })
   }
 
-  addPokemon = (name, i) => {
+  addPokemon = (url, i) => {
     const { caughtPokemon } = this.state
 
     caughtPokemon.push({
-      name: name,
+      url: url,
       index: i
     })
 
@@ -93,7 +93,7 @@ class App extends Component {
             <Link id='homeLink' className="black-text" to="/">
               PoKéMoN
               </Link>
-            <CaughtPokemon caughtPokemon={caughtPokemon} />
+            <CaughtPokemon caughtPokemon={caughtPokemon}/>
             <Switch>
               <Route
                 exact
