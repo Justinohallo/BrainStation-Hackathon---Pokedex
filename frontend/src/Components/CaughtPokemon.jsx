@@ -13,7 +13,7 @@ class CaughtPokemon extends Component {
     })
     return (
       <div>
-        <h1>Caught Pokemon</h1>
+        <h3>Your PokeBall</h3>
         {caughtPokemonJSX}
       </div>
     );

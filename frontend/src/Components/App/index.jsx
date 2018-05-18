@@ -31,6 +31,18 @@ class App extends Component {
     })
   }
 
+  nextPokemon = () => {
+    this.setState({
+      pokemonIndex: Number(this.state.pokemonIndex) + 1
+     } )
+  } 
+
+  previousPokemon = () => {
+    this.setState({
+      pokemonIndex: Number(this.state.pokemonIndex) -1
+    })
+  }
+
   searchPokemon = (e, pokemon) => {
     if (!pokemon) {
       alert('What do you want to catch?')
@@ -81,6 +93,8 @@ class App extends Component {
                       pokemonList={pokemonList}
                       id={this.state.pokemonIndex}
                       addPokemon={this.addPokemon}
+                      nextPokemon={this.nextPokemon}
+                      previousPokemon={this.previousPokemon}
                     />
                   )}
                 />
