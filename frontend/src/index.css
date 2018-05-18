@@ -60,6 +60,10 @@ body {
   height: 40%;
 }
 
+#typeIcon {
+  width: 30%;
+}
+
 #pokeCardName {
   text-align: center;
 }
