@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { Route, Switch, Link } from 'react-router-dom'
+import axios from 'axios'
+
 import PokemonList from '../PokemonList'
 import PokemonDetails from "../PokemonDetails";
 import CaughtPokemon from '../CaughtPokemon'
@@ -8,9 +10,31 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
+      pokemonList: [],
       pokemonIndex: 0,
       caughtPokemon: []
     }
+  }
+
+  componentDidMount() {
+    axios.get('http://localhost:8080/')
+      .then((response) => {
+        console.log(response.data.pokemonList)
+        this.setState({
+          pokemonList: response.data.pokemonList,
+          caughtPokemon: response.data.caughtPokemon
+        })
+      })
+  }
+
+  componentDidUpdate() {
+    const { pokemonList, caughtPokemon } = this.state
+    axios.post('http://localhost:8080/', { pokemonList, caughtPokemon })
+      .then((response) => {
+        console.log(response)
+      }).catch((error) => {
+        console.log(error)
+      })
   }
 
   sendId = (cutId) => {
@@ -50,8 +74,7 @@ class App extends Component {
   }
 
   render() {
-    const { caughtPokemon } = this.state 
-    const { pokemonList } = this.props
+    const { pokemonList, caughtPokemon } = this.state
 
     return (
       <div className="containter center">
