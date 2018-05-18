@@ -1,5 +1,7 @@
 import React, { Component } from "react";
-import axios from "axios";
+import axios from 'axios'
+import { Route, Link } from "react-router-dom";
+
 // import { Route, Link } from "react-router-dom";
 // import PokemonList from './PokemonList'
 
@@ -13,37 +15,58 @@ class PokemonDetails extends Component {
     console.log(this.state.pokeData);
   }
 
+  componentWillMount(){
+    let urlUpdateState = this.props.urlUpdateState
+    urlUpdateState(this.props.match.params.pokeid)
+  }
+
   componentDidMount() {
     axios.get("http://localhost:8080/pokeData").then(response => {
       this.setState({
         pokeData: response.data
-      });
-    });
+      })
+      const {match} = this.props
+      // might be in the wrong spot
+    })
   }
 
   render() {
-    const { pokemonList, previousPokemon, nextPokemon } = this.props;
+    const { 
+      pokemonList, 
+      previousPokemon, 
+      nextPokemon,
+      match
+    } = this.props
 
     const { pokeData } = this.state;
 
     let id = this.props.id - 1;
+    let pokemonGroup = this.props.pokemonList
+    let pokemonName = this.props.match.params.pokeid
 
     if (pokeData.length < 1) {
       return <img id="ball" src="/img/ball.gif" alt="loading" />;
     }
 
+    // if (pokeData[id].type[0] === fire ) {
+    //   return <img
+    // }
+
     return (
       <div className="black-text row">
-        <div className="col m4">
-          <i
-            id="arrowIcon"
+        {this.props.id}
+        <p className='pokeName'>{pokemonList[id].name.toUpperCase()}</p>
+        <div className='col m4'>
+        <Link to={`${[this.props.id]}`}>
+          <i id='arrowIcon'
             onClick={() => {
               previousPokemon(this.props.id);
             }}
             className="large material-icons"
           >
+        
             chevron_left
-          </i>
+        </i> </Link>
         </div>
         <div className="col m4">
           <div className="card">
@@ -75,16 +98,17 @@ class PokemonDetails extends Component {
             </div>
           </div>
         </div>
-        <div className="col m4">
-          <i
-            id="arrowIcon"
+        <div className='col m4'>
+        <Link to={`${[this.props.id]}`}>
+          <i id='arrowIcon'
             onClick={() => {
               nextPokemon(this.props.id);
             }}
             className="large material-icons"
           >
             chevron_right
-          </i>
+        </i>
+        </Link>
         </div>
       </div>
     );
