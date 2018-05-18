@@ -3,6 +3,7 @@ const express = require('express')
 const app = express()
 const port = process.argv[2] || 8080
 const bodyParser = require('body-parser')
+const oakdexPokedex = require('oakdex-pokedex')
 
 let caughtPokemon = []
 
@@ -32,6 +33,27 @@ app.post('/', (req, res) => {
   caughtPokemon = req.body.caughtPokemon
 
   res.json({ success: true })
+})
+
+app.get('/pokeData', (req, res) => {
+  oakdexPokedex.allPokemon({ dex: 'kanto' }, ((pokemon) => {
+    const pokeData = pokemon.map((poke) => {
+      return (
+        {
+          name: poke.names.en,
+          id: poke.national_id,
+          type: poke.types,
+          height: poke.height_us,
+          weight: poke.weight_us,
+          description: poke.pokedex_entries.Red.en
+        }
+      )
+    })
+    const sortedPokeData = pokeData.sort((a, b) => {
+      return parseFloat(a.id) - parseFloat(b.id);
+    })
+    res.send(sortedPokeData)
+  }));
 })
 
 // port listening

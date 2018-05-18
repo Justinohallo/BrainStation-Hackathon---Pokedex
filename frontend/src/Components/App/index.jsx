@@ -12,7 +12,8 @@ class App extends Component {
     this.state = {
       pokemonList: [],
       pokemonIndex: 0,
-      caughtPokemon: []
+      caughtPokemon: [],
+      pokeData: []
     }
   }
 
@@ -22,6 +23,13 @@ class App extends Component {
         this.setState({
           pokemonList: response.data.pokemonList,
           caughtPokemon: response.data.caughtPokemon
+        })
+      })
+    axios.get('http://localhost:8080/pokeData')
+      .then((response) => {
+        console.log(response.data.sortedPokeData)
+        this.setState({
+          pokeData: response.data.sortedPokeData
         })
       })
   }
@@ -54,12 +62,24 @@ class App extends Component {
     })
   }
 
+  nextPokemon = () => {
+    this.setState({
+      pokemonIndex: Number(this.state.pokemonIndex) + 1
+    })
+  }
+
+  previousPokemon = () => {
+    this.setState({
+      pokemonIndex: Number(this.state.pokemonIndex) - 1
+    })
+  }
+
   searchPokemon = (e, pokemon) => {
     if (!pokemon) {
       alert('What do you want to catch?')
       return
-    } this.setState({ 
-      pokemon: pokemon 
+    } this.setState({
+      pokemon: pokemon
     })
     let searchId = this.props.pokemonList.map(pokemonProps => {
       if (pokemon === pokemonProps.name) {
@@ -103,6 +123,8 @@ class App extends Component {
                       pokemonList={pokemonList}
                       id={this.state.pokemonIndex}
                       addPokemon={this.addPokemon}
+                      nextPokemon={this.nextPokemon}
+                      previousPokemon={this.previousPokemon}
                     />
                   )}
                 />
